@@ -2,6 +2,7 @@ package com.OO.Lab1.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +18,8 @@ import com.OO.Lab1.services.CarService;
 @RestController
 public class CarController {
 
-    private final CarService carService;
-
-    public CarController(CarService carService) {
-        this.carService = carService;
-    }
+    @Autowired
+    private CarService carService;
 
     @GetMapping("/cars")
     @ResponseStatus(HttpStatus.OK)
