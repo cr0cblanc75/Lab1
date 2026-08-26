@@ -21,6 +21,8 @@ public class CarController {
     @Autowired
     private CarService carService;
 
+
+    // ------------------------------------------ Mappings ------------------------------------------
     @GetMapping("/cars")
     @ResponseStatus(HttpStatus.OK)
     public List<Car> getCars(
