@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +39,12 @@ public class CarController {
     @ResponseStatus(HttpStatus.OK)
     public List<Car> getAvailableCars() {
         return carService.getAvailableCars();
+    }
+
+    @PutMapping("/cars/{plateNumber}?rent")
+    @ResponseStatus(HttpStatus.OK)
+    public void rentCar(@PathVariable("plateNumber") String plateNumber) throws Exception {
+        carService.rentCar(plateNumber);
     }
 
     /* 

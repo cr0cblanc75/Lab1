@@ -44,4 +44,13 @@ public class CarService {
         return availableCars;
     }
 
+    public void rentCar(String plateNumber) throws Exception {
+        Car car = getCarbyPlateNumber(plateNumber);
+        if (car != null && !car.isRented()) {
+            car.confirmRented();
+        } else {
+            throw new Exception("Car not available for rent.");
+        }
+    }
+
 }
