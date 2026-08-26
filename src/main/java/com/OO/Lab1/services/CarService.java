@@ -11,7 +11,7 @@ import com.OO.Lab1.obj.Car;
 @Service
 public class CarService {
 
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
     public CarService() {
         cars.add(new Car("0", "Ferrari", 100));
@@ -50,6 +50,15 @@ public class CarService {
             car.confirmRented();
         } else {
             throw new Exception("Car not available for rent.");
+        }
+    }
+
+    public void returnCar(String plateNumber) throws Exception {
+        Car car = getCarbyPlateNumber(plateNumber);
+        if (car != null && car.isRented()) {
+            car.confirmReturned();
+        } else {
+            throw new Exception("Car not available for return.");
         }
     }
 

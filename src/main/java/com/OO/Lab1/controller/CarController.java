@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.OO.Lab1.obj.Car;
 import com.OO.Lab1.services.CarService;
@@ -38,10 +39,20 @@ public class CarController {
     @ResponseBody
     public Car getCarbyPlateNumber(
             @PathVariable("plateNumber") String plateNumber,
-            @RequestParam(value = "toRent", required = false) String toRent) throws Exception {
+            @RequestParam(value = "toRent", required = false) String toRent,
+            @RequestParam(value = "toReturn", required = false) String toReturn) throws Exception {
 
-        if (toRent != null) {
+        if (toRent != null && toReturn == null) {
             carService.rentCar(plateNumber);
+
+        } else if (toReturn != null && toRent == null) {
+            carService.returnCar(plateNumber);
+
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Invalid request parameters. Please specify either 'toRent' or 'toReturn'."
+            );
         }
 
         return carService.getCarbyPlateNumber(plateNumber);
