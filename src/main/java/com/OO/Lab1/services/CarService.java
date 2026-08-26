@@ -20,19 +20,22 @@ public class CarService {
         cars.add(new Car("3", "Audi", 20));
     }
 
+    // GET ALL THE CARS
     public List<Car> getAllCars() {
         return cars;
     }
 
+    // GET ONLY THE DESIRED CAR
     public Car getCarbyPlateNumber(@PathVariable("plateNumber") String plateNumber) throws Exception {
         for (Car car : cars) {
             if (car.getPlateNumber().equals(plateNumber)) {
                 return car;
             }
         }
-        return null;
+        throw new Exception("Car with plate number '" + plateNumber + "' not found.");
     }
 
+    // GET ALL THE AVAILABLE CARS
     public List<Car> getAvailableCars() {
         List<Car> availableCars = new ArrayList<>();
 
@@ -44,6 +47,7 @@ public class CarService {
         return availableCars;
     }
 
+    // RENT A CAR
     public void rentCar(String plateNumber) throws Exception {
         Car car = getCarbyPlateNumber(plateNumber);
         if (car != null && !car.isRented()) {
@@ -53,6 +57,7 @@ public class CarService {
         }
     }
 
+    // RETURN A CAR
     public void returnCar(String plateNumber) throws Exception {
         Car car = getCarbyPlateNumber(plateNumber);
         if (car != null && car.isRented()) {

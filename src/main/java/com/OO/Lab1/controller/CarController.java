@@ -48,7 +48,7 @@ public class CarController {
         } else if (toReturn != null && toRent == null) {
             carService.returnCar(plateNumber);
 
-        } else {
+        } else if (toRent != null && toReturn != null) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
                     "Invalid request parameters. Please specify either 'toRent' or 'toReturn'."
