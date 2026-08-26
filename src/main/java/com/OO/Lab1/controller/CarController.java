@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,44 +24,26 @@ public class CarController {
 
     @GetMapping("/cars")
     @ResponseStatus(HttpStatus.OK)
-    public List<Car> getAllCars() {
+    public List<Car> getCars(
+            @RequestParam(value = "available", required = false) String available) {
+
+        if (available != null) {
+            return carService.getAvailableCars();
+        }
         return carService.getAllCars();
     }
 
     @GetMapping("/cars/{plateNumber}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Car getCarbyPlateNumber(@PathVariable("plateNumber") String plateNumber) throws Exception {
+    public Car getCarbyPlateNumber(
+            @PathVariable("plateNumber") String plateNumber,
+            @RequestParam(value = "toRent", required = false) String toRent) throws Exception {
+
+        if (toRent != null) {
+            carService.rentCar(plateNumber);
+        }
+
         return carService.getCarbyPlateNumber(plateNumber);
     }
-
-    @GetMapping("/cars?available=true")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Car> getAvailableCars() {
-        return carService.getAvailableCars();
-    }
-
-    @PutMapping("/cars/{plateNumber}?rent")
-    @ResponseStatus(HttpStatus.OK)
-    public void rentCar(@PathVariable("plateNumber") String plateNumber) throws Exception {
-        carService.rentCar(plateNumber);
-    }
-
-    /* 
-    @PutMapping("/cars/{plateNumber}")
-    @ResponseStatus(HttpStatus.OK)
-    public void rentOrGetBack(
-            @PathVariable("plateNumber") String plateNumber,
-            @RequestParam(value = "rent", required = true) boolean rent,
-            @RequestBody(required = false) Dates dates) {
-
-        if (rent) {
-            System.out.println("Car " + plateNumber + " rented");
-            System.out.println("Begin: " + dates.getBegin());
-            System.out.println("End: " + dates.getEnd());
-        } else {
-            System.out.println("Car " + plateNumber + " returned");
-        }
-    } 
-     */
 }
