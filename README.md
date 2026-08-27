@@ -1,6 +1,6 @@
 JDK 25
 
-./gradlew build
+./gradlew build <br>
 ./gradlew bootRun
 
 ## Commands API
