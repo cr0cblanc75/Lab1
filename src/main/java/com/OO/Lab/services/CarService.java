@@ -1,4 +1,4 @@
-package com.OO.Lab1.services;
+package com.OO.Lab.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.OO.Lab1.obj.Car;
+import com.OO.Lab.obj.Car;
 
 @Service
 public class CarService {

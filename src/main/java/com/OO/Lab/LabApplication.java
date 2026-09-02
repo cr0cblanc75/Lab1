@@ -1,4 +1,4 @@
-package com.OO.Lab1;
+package com.OO.Lab;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @SpringBootApplication
 @Controller
-public class Lab1Application {
+public class LabApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Lab1Application.class, args);
+        SpringApplication.run(LabApplication.class, args);
     }
 
     @GetMapping("/")

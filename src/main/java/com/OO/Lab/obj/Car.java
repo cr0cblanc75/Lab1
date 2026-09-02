@@ -1,4 +1,4 @@
-package com.OO.Lab1.obj;
+package com.OO.Lab.obj;
 
 public class Car {
 

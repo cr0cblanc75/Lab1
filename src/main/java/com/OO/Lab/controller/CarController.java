@@ -1,4 +1,4 @@
-package com.OO.Lab1.controller;
+package com.OO.Lab.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.OO.Lab1.obj.Car;
-import com.OO.Lab1.services.CarService;
+import com.OO.Lab.obj.Car;
+import com.OO.Lab.services.CarService;
 
 @RestController
 public class CarController {
