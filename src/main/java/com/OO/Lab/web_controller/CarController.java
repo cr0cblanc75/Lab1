@@ -1,4 +1,4 @@
-package com.OO.Lab.controller;
+package com.OO.Lab.web_controller;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.OO.Lab.obj.Car;
-import com.OO.Lab.services.CarService;
+import com.OO.Lab.bdd.Car;
+import com.OO.Lab.services.CarServiceImpl;
 
 @RestController
 public class CarController {
 
     @Autowired
-    private CarService carService;
+    private CarServiceImpl carService;
 
 
     // ------------------------------------------ Mappings ------------------------------------------
